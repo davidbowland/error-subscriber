@@ -2,7 +2,7 @@
   "name": "error-subscriber",
   "author": "David Bowland",
   "description": "Creates an subscribes to SNS topic for errors",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
     "node": "^14.0.0"
   },
