@@ -6,9 +6,6 @@ Transform:
   - AWS::Serverless-2016-10-31
 
 Parameters:
-  AccountId:
-    Type: String
-    Description: AWS account ID
   Environment:
     Type: String
     Default: prod
@@ -39,7 +36,7 @@ Resources:
   SNSSubscriber:
     Type: AWS::Serverless::Function
     Properties:
-      Description: Processes queued messages to send sms messages.
+      Description: Processes queued alerts from an SNS topic and sends them to sms-queue-api
       Runtime: nodejs14.x
       Architectures:
         - x86_64
@@ -63,7 +60,7 @@ Resources:
               Effect: Allow
               Resource: 'arn:aws:apigateway:us-east-1::/apikeys'
 
-  LambdaInvokePermission:
+  SNSLambdaInvokePermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: 'lambda:InvokeFunction'
@@ -106,7 +103,7 @@ Resources:
 
   # CloudWatch
 
-  LambdaLogGroup:
+  SNSLambdaLogGroup:
     Type: AWS::Logs::LogGroup
     DependsOn: [SNSSubscriber]
     Properties:
