@@ -1,5 +1,7 @@
 # Lambdas for Error SNS Topic
 
+**NOTE:** This project is **deprecated** in favor of [log subscriptions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html). This project works just fine, but alerts are expensive and a subscription means SNS isn't required. See the project [log-subscriber](https://github.com/davidbowland/log-subscriber) for that solution.
+
 Create an error SNS topic and subscribe a lambda that notifies via SMS.
 
 ## Setup
