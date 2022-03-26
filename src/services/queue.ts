@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios'
 
+import { SMSMessage, SNSMessage } from '../types'
 import { smsApiKeyName, smsApiUrl, smsToPhoneNumber } from '../config'
 import { getApiKey } from '../services/api-keys'
-import { SMSMessage, SNSMessage } from '../types'
 
 const api = axios.create({
   baseURL: smsApiUrl,
@@ -11,9 +11,9 @@ const api = axios.create({
 /* Emails */
 
 const convertContentsToJson = (message: SNSMessage): SMSMessage => ({
-  to: smsToPhoneNumber,
   contents: message.Subject,
   messageType: 'TRANSACTIONAL',
+  to: smsToPhoneNumber,
 })
 
 export const sendSms = (message: SNSMessage): Promise<AxiosResponse> =>

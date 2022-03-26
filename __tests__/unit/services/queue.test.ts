@@ -1,9 +1,10 @@
-import { snsMessage } from '../__mocks__'
-import { smsApiKeyName, smsApiUrl, smsToPhoneNumber } from '@config'
 import { mocked } from 'jest-mock'
+
 import * as apiKeys from '@services/api-keys'
-import { sendSms } from '@services/queue'
 import { rest, server } from '@setup-server'
+import { smsApiKeyName, smsApiUrl, smsToPhoneNumber } from '@config'
+import { sendSms } from '@services/queue'
+import { snsMessage } from '../__mocks__'
 
 jest.mock('@services/api-keys')
 
@@ -34,9 +35,9 @@ describe('queue', () => {
     test('expect sms contents to be passed to the endpoint', async () => {
       await sendSms(snsMessage)
       expect(postEndpoint).toHaveBeenCalledWith({
-        to: smsToPhoneNumber,
         contents: 'ALARM: "dbowland-error-test" in US East (N. Virginia)',
         messageType: 'TRANSACTIONAL',
+        to: smsToPhoneNumber,
       })
     })
   })

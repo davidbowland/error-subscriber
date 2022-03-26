@@ -1,7 +1,7 @@
-import { sendSms } from '../services/queue'
-import { SNSEvent, SNSHandler, SNSEventRecord } from '../types'
+import { SNSEvent, SNSEventRecord, SNSHandler } from '../types'
 import { log, logError } from '../utils/logging'
 import { getDataFromRecord } from '../utils/message-processing'
+import { sendSms } from '../services/queue'
 
 /* Queue processing */
 
